@@ -40,9 +40,9 @@
         <input type="hidden" name="next" value="{{ request.POST.next }}" />
         {% endif %}
 
-        User: {{ form.username }}
-        Password: {{ form.password }}
-        OTP: {{ form.otp_token }}
+        {{ form.username }}
+        {{ form.password }}
+        {{ form.otp_token }}
 
         <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">
           Sign In

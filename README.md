@@ -23,10 +23,10 @@ Run migration:
 ./manage.py migrate
 ```
 
-To ensure the plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the NetBox root directory (alongside `requirements.txt`) and append the `nextbox-ui-plugin` package:
+To ensure the plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the NetBox root directory (alongside `requirements.txt`) and append the `netbox-otp-plugin` package:
 
 ```no-highlight
-echo nextbox-otp-plugin >> local_requirements.txt
+echo netbox-otp-plugin >> local_requirements.txt
 ```
 
 ## Configuration

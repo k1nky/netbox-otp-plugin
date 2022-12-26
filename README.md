@@ -1,6 +1,6 @@
 # Netbox OTP Plugin
 
-Two-factor authentication for [NetBox](https://github.com/netbox-community/netbox). The plugin provides user OTP token verification and OTP device management is provided and bases on django_otp with Time-based One-time Password algorithm.
+Two-factor authentication for [NetBox](https://github.com/netbox-community/netbox). The plugin provides user OTP token verification and OTP device management is provided and bases on [django-otp](https://github.com/django-otp/django-otp) with Time-based One-time Password algorithm.
 
 ## Compatibility
 
@@ -26,7 +26,7 @@ Run migration:
 To ensure the plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the NetBox root directory (alongside `requirements.txt`) and append the `nextbox-ui-plugin` package:
 
 ```no-highlight
-echo nextbox_otp_plugin >> local_requirements.txt
+echo nextbox-otp-plugin >> local_requirements.txt
 ```
 
 ## Configuration

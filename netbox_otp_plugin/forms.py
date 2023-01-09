@@ -13,7 +13,7 @@ class OTPAuthenticationForm(OTPAuthenticationFormMixin, AuthenticationForm):
     def clean(self):
         self.cleaned_data = super().clean()
         user = self.get_user()
-        # use get_plugin_config better
+        # use get_plugin_config from extras.plugins better
         plugin_config = settings.PLUGINS_CONFIG['netbox_otp_plugin'] 
         otp_required = plugin_config.get('otp_required')
         if user_has_device(user) or otp_required:

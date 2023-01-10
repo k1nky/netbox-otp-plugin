@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 
 class RedirectToOTPMiddleware:
     def __init__(self, get_response):

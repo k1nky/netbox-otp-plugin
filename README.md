@@ -37,6 +37,11 @@ An OTP device can be attached to a user in the admin site or the command:
 ```
 Then you will see a QR code that you can add to an TOTP authenticator.
 
+To reset user OTP device use the admin site or the command:
+```
+./manage.py resettotp <username>
+```
+
 The plugin has additional options:
 * `otp_required` - if set to True then two-factor authentication will be always required even if a user doesn't have an OTP device yet. False value required to authenticate users only with an OTP device attached only. Default: `True`.
 * `issuer` - the issuer parameter for the otpauth URL (see more https://github.com/google/google-authenticator/wiki/Key-Uri-Format). Default: `'Netbox'`.

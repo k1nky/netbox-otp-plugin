@@ -49,6 +49,15 @@
         </button>
       </form>
     </div>
+    {% if auth_backends %}
+      <h6 class="mt-4 mb-3">Or use a single sign-on (SSO) provider:</h6>
+      {% for backend in auth_backends %}
+        <h5>
+          {% if backend.icon_name %}<i class="mdi mdi-{{ backend.icon_name }}"></i>{% endif %}
+          <a href="{{ backend.url }}" class="my-2">{{ backend.display_name }}</a>
+        </h5>
+      {% endfor %}
+    {% endif %}
 
   </main>
 

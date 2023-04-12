@@ -7,7 +7,7 @@ from utilities.forms import BootstrapMixin
 
 class OTPAuthenticationForm(OTPAuthenticationFormMixin, AuthenticationForm):
     otp_device = forms.CharField(required=False, widget=forms.Select)
-    otp_token = forms.CharField(required=False, widget=forms.TextInput(attrs={'autocomplete': 'off'}))
+    otp_token = forms.CharField(required=False, widget=forms.TextInput(attrs={'autocomplete': 'off', 'class': 'rounded'}), label="OTP Token")
     otp_challenge = forms.CharField(required=False)
 
     def clean(self):

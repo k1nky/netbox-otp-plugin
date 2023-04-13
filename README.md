@@ -2,13 +2,15 @@
 
 Two-factor authentication for [NetBox](https://github.com/netbox-community/netbox). The plugin provides user OTP token verification and OTP device management is provided and bases on [django-otp](https://github.com/django-otp/django-otp) with Time-based One-time Password algorithm.
 
+![alt text](login.png "Login page")
+
 ## Compatibility
 
 This plugin in compatible with 3.1 and later.
 
 ## Installation
 
-The plugin is available as a Python package in pypi and can be installed with pip
+The plugin is available as a [Python package](https://pypi.org/project/netbox-otp-plugin/) in pypi and can be installed with pip
 
 ```
 source /opt/netbox/venv/bin/activate

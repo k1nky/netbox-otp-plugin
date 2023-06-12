@@ -11,6 +11,7 @@ if importlib.util.find_spec('django_otp') is None:
     )
 
 netbox_settings.INSTALLED_APPS.extend(['django_otp','django_otp.plugins.otp_totp'])
+netbox_settings.AUTH_EXEMPT_PATHS = netbox_settings.AUTH_EXEMPT_PATHS + (f'/{netbox_settings.BASE_PATH}plugins/otp',)
 
 class OTPPluginConfig(PluginConfig):
     name = 'netbox_otp_plugin'

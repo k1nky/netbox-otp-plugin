@@ -1,7 +1,7 @@
 import importlib
 from django.core.exceptions import ImproperlyConfigured
 
-from extras.plugins import PluginConfig
+from netbox.plugins import PluginConfig
 import netbox.settings as netbox_settings
 
 if importlib.util.find_spec('django_otp') is None:
@@ -22,7 +22,7 @@ class OTPPluginConfig(PluginConfig):
     name = 'netbox_otp_plugin'
     verbose_name = 'OTP Login'
     description = 'OTP Login plugin'
-    version = '1.0.7'
+    version = '1.0.8'
     author = 'Andrey Shalashov'
     author_email = 'avshalashov@yandex.ru'
     base_url = 'otp'

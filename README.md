@@ -6,7 +6,7 @@ Two-factor authentication for [NetBox](https://github.com/netbox-community/netbo
 
 ## Compatibility
 
-This plugin in compatible with 3.1 and later.
+This plugin in compatible with 4.0 and later.
 
 ## Installation
 

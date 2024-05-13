@@ -1,7 +1,7 @@
 import importlib
 from django.core.exceptions import ImproperlyConfigured
 
-from extras.plugins import PluginConfig
+from netbox.plugins import PluginConfig
 import netbox.settings as netbox_settings
 
 if importlib.util.find_spec('django_otp') is None:

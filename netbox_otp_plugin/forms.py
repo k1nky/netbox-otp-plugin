@@ -6,7 +6,7 @@ from django_otp import user_has_device
 
 class OTPAuthenticationForm(OTPAuthenticationFormMixin, AuthenticationForm):
     otp_device = forms.CharField(required=False, widget=forms.Select)
-    otp_token = forms.CharField(required=False, widget=forms.TextInput(attrs={'autocomplete': 'off', 'class': 'rounded'}), label="OTP Token")
+    otp_token = forms.CharField(required=False, widget=forms.TextInput(attrs={'autocomplete': 'off'}), label="OTP Token")
     otp_challenge = forms.CharField(required=False)
 
     def clean(self):

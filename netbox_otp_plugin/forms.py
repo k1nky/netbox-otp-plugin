@@ -3,7 +3,6 @@ from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
 from django_otp.forms import OTPAuthenticationFormMixin
 from django_otp import user_has_device
-from utilities.forms import BootstrapMixin
 
 class OTPAuthenticationForm(OTPAuthenticationFormMixin, AuthenticationForm):
     otp_device = forms.CharField(required=False, widget=forms.Select)
@@ -21,5 +20,5 @@ class OTPAuthenticationForm(OTPAuthenticationFormMixin, AuthenticationForm):
 
         return self.cleaned_data
 
-class OTPLoginForm(BootstrapMixin, OTPAuthenticationForm):
+class OTPLoginForm(OTPAuthenticationForm):
     pass

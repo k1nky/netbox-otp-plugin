@@ -1,7 +1,7 @@
 import importlib
 from django.core.exceptions import ImproperlyConfigured
 
-from extras.plugins import PluginConfig
+from netbox.plugins import PluginConfig
 import netbox.settings as netbox_settings
 
 if importlib.util.find_spec('django_otp') is None:
@@ -11,18 +11,14 @@ if importlib.util.find_spec('django_otp') is None:
     )
 
 netbox_settings.INSTALLED_APPS.extend(['django_otp','django_otp.plugins.otp_totp'])
-
-if hasattr(netbox_settings, "AUTH_EXEMPT_PATHS"):
-    # netbox version >= 3.5.0
-    netbox_settings.AUTH_EXEMPT_PATHS = netbox_settings.AUTH_EXEMPT_PATHS + (f'/{netbox_settings.BASE_PATH}plugins/otp',)
-else:
-    netbox_settings.EXEMPT_PATHS = netbox_settings.EXEMPT_PATHS + (f'/{netbox_settings.BASE_PATH}plugins/otp',)
+# the plugin login URL must be exempt from authentication
+netbox_settings.AUTH_EXEMPT_PATHS = netbox_settings.AUTH_EXEMPT_PATHS + (f'/{netbox_settings.BASE_PATH}plugins/otp',)
 
 class OTPPluginConfig(PluginConfig):
     name = 'netbox_otp_plugin'
     verbose_name = 'OTP Login'
     description = 'OTP Login plugin'
-    version = '1.0.7'
+    version = '1.1.0'
     author = 'Andrey Shalashov'
     author_email = 'avshalashov@yandex.ru'
     base_url = 'otp'

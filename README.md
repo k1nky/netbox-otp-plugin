@@ -6,7 +6,11 @@ Two-factor authentication for [NetBox](https://github.com/netbox-community/netbo
 
 ## Compatibility
 
-This plugin in compatible with 3.1 and later.
+| NetBox Version| Plugin Version|
+|---------------|---------------|
+| 4.0           | 1.1.0         |
+| 3.1+          | 1.0.7         |
+
 
 ## Installation
 
@@ -15,6 +19,8 @@ The plugin is available as a [Python package](https://pypi.org/project/netbox-ot
 ```
 source /opt/netbox/venv/bin/activate
 python -m pip install netbox-otp-plugin
+# or
+# python -m pip install netbox-otp-plugin==<version>
 ```
 Enable the plugin in /opt/netbox/netbox/netbox/configuration.py:
 ```

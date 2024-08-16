@@ -4,6 +4,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from django_otp.forms import OTPAuthenticationFormMixin
 from django_otp import user_has_device
 
+from netbox.forms import NetBoxModelForm
+from .models import Device
+
+
 class OTPAuthenticationForm(OTPAuthenticationFormMixin, AuthenticationForm):
     otp_device = forms.CharField(required=False, widget=forms.Select)
     otp_token = forms.CharField(required=False, widget=forms.TextInput(attrs={'autocomplete': 'off', 'class': 'rounded'}), label="OTP Token")
@@ -20,5 +24,12 @@ class OTPAuthenticationForm(OTPAuthenticationFormMixin, AuthenticationForm):
 
         return self.cleaned_data
 
+
 class OTPLoginForm(OTPAuthenticationForm):
     pass
+
+class DeviceForm(NetBoxModelForm):
+
+    class Meta:
+        model = Device
+        fields = ('name',)

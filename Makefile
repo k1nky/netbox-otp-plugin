@@ -3,7 +3,7 @@ clean:
 	rm -rf dist
 
 wheel:
-	python -m build -w
+	python3 -m build -w
 
 build: clean wheel
 

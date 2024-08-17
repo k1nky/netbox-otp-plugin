@@ -2,13 +2,13 @@
 
 Two-factor authentication for [NetBox](https://github.com/netbox-community/netbox). The plugin provides user OTP token verification and OTP device management is provided and bases on [django-otp](https://github.com/django-otp/django-otp) with Time-based One-time Password algorithm.
 
-![alt text](login.png "Login page")
+![alt text](assets/login.png "Login page")
 
 ## Compatibility
 
 | NetBox Version| Plugin Version|
 |---------------|---------------|
-| 4.0           | 1.1.0         |
+| 4.0           | 1.1.0+        |
 | 3.1+          | 1.0.7         |
 
 
@@ -39,13 +39,13 @@ echo netbox-otp-plugin >> local_requirements.txt
 
 ## Configuration
 
-An OTP device can be attached to a user in the admin site or the command:
+An OTP device can be attached to a user on your NetBox site or using the command:
 ```
 ./manage.py addtotp <username>
 ```
 Then you will see a QR code that you can add to an TOTP authenticator.
 
-To reset user OTP device use the admin site or the command:
+To reset user OTP device use the site or the command:
 ```
 ./manage.py resettotp <username>
 ```
@@ -64,3 +64,11 @@ PLUGINS_CONFIG = {
     }
 }
 ```
+
+### Screenshots
+
+![alt text](assets/device_list.png "Device list")
+
+![alt text](assets/device_add.png "Add a device")
+
+![alt text](assets/device_edit.png "Edit a device")

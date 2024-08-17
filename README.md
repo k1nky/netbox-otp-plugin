@@ -2,33 +2,35 @@
 
 Two-factor authentication for [NetBox](https://github.com/netbox-community/netbox). The plugin provides user OTP token verification and OTP device management is provided and bases on [django-otp](https://github.com/django-otp/django-otp) with Time-based One-time Password algorithm.
 
-![alt text](login.png "Login page")
+![alt text](assets/login.png "Login page")
 
 ## Compatibility
 
 | NetBox Version| Plugin Version|
 |---------------|---------------|
-| 4.0           | 1.1.0         |
+| 4.0           | 1.1.0+        |
 | 3.1+          | 1.0.7         |
 
 
 ## Installation
 
 The plugin is available as a [Python package](https://pypi.org/project/netbox-otp-plugin/) in pypi and can be installed with pip
-
 ```
 source /opt/netbox/venv/bin/activate
 python -m pip install netbox-otp-plugin
 # or
 # python -m pip install netbox-otp-plugin==<version>
 ```
+
 Enable the plugin in /opt/netbox/netbox/netbox/configuration.py:
 ```
 PLUGINS = ['netbox_otp_plugin']
 ```
+
 Run migration:
 ```
-./manage.py migrate
+./manage.py makemigrations netbox_otp_plugin
+./manage.py migrate netbox_otp_plugin
 ```
 
 To ensure the plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the NetBox root directory (alongside `requirements.txt`) and append the `netbox-otp-plugin` package:
@@ -39,13 +41,13 @@ echo netbox-otp-plugin >> local_requirements.txt
 
 ## Configuration
 
-An OTP device can be attached to a user in the admin site or the command:
+An OTP device can be attached to a user on your NetBox site or using the command:
 ```
 ./manage.py addtotp <username>
 ```
 Then you will see a QR code that you can add to an TOTP authenticator.
 
-To reset user OTP device use the admin site or the command:
+To reset user OTP device use the site or the command:
 ```
 ./manage.py resettotp <username>
 ```
@@ -64,3 +66,11 @@ PLUGINS_CONFIG = {
     }
 }
 ```
+
+### Screenshots
+
+![alt text](assets/device_list.png "Device list")
+
+![alt text](assets/device_add.png "Add a device")
+
+![alt text](assets/device_edit.png "Edit a device")

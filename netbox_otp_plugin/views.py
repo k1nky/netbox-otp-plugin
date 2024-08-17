@@ -14,13 +14,17 @@ from django.http import HttpResponseRedirect
 
 from netbox.authentication import get_auth_backend_display, get_saml_idps
 from netbox.config import get_config
-from users.models import  UserConfig
+from users.models import UserConfig
+from netbox.views import generic
 
-from netbox_otp_plugin.forms import OTPLoginForm
+from . import tables
+from . import models
+from . import forms
+
 
 class OTPLoginView(LoginView):
     template_name = 'otp_login.html'
-    authentication_form = OTPLoginForm
+    authentication_form = forms.OTPLoginForm
 
     def gen_auth_data(self, name, url, params):
         display_name, icon_name = get_auth_backend_display(name)
@@ -108,3 +112,22 @@ class OTPLoginView(LoginView):
             redirect_url = reverse('home')
 
         return HttpResponseRedirect(redirect_url)
+
+
+class DeviceView(generic.ObjectView):
+    queryset = models.Device.objects.all()
+    template_name = 'otp_device.html'
+
+
+class DeviceEditView(generic.ObjectEditView):
+    queryset = models.Device.objects.all()
+    form = forms.DeviceForm
+
+
+class DeviceDeleteView(generic.ObjectDeleteView):
+    queryset = models.Device.objects.all()
+
+
+class DeviceListView(generic.ObjectListView):
+    queryset = models.Device.objects
+    table = tables.TOTPDeviceTable

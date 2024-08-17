@@ -8,6 +8,7 @@ try:
 except ModuleNotFoundError:
     raise CommandError('django_otp module does not exist')
 
+
 class Command(BaseCommand):
 
     help = 'Reset a TOTP device for specified user'

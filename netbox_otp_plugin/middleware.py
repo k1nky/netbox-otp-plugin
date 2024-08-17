@@ -1,4 +1,6 @@
 from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 
 class RedirectToOTPMiddleware:
     def __init__(self, get_response):
@@ -6,8 +8,6 @@ class RedirectToOTPMiddleware:
 
     def __call__(self, request):
         if request.path.startswith('/login'):
-                return HttpResponseRedirect('/plugins/otp/')
-        if request.path.startswith('/admin/login'):
-                return HttpResponseRedirect('/plugins/otp/')
+            return HttpResponseRedirect(reverse('plugins:netbox_otp_plugin:login'))
 
         return self.get_response(request)

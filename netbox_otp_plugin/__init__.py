@@ -6,21 +6,28 @@ import netbox.settings as netbox_settings
 
 if importlib.util.find_spec('django_otp') is None:
     raise ImproperlyConfigured(
-        f"netbox_otp_plugin is enabled but django_otp is not present. It can be "
-        f"installed by running 'pip install django_otp qrcode'." 
+        "netbox_otp_plugin is enabled but django_otp is not present. It can be "
+        "installed by running 'pip install django_otp qrcode'."
     )
 
-netbox_settings.INSTALLED_APPS.extend(['django_otp','django_otp.plugins.otp_totp'])
 # the plugin login URL must be exempt from authentication
 netbox_settings.AUTH_EXEMPT_PATHS = netbox_settings.AUTH_EXEMPT_PATHS + (f'/{netbox_settings.BASE_PATH}plugins/otp',)
+
 
 class OTPPluginConfig(PluginConfig):
     name = 'netbox_otp_plugin'
     verbose_name = 'OTP Login'
     description = 'OTP Login plugin'
-    version = '1.1.0'
+    version = '1.2.0'
     author = 'Andrey Shalashov'
     author_email = 'avshalashov@yandex.ru'
+    min_version = '4.0.0'
+    max_version = '4.0.99'
+    django_apps = [
+        'django_otp',
+        'django_otp.plugins.otp_totp',
+        'qr_code'
+    ]
     base_url = 'otp'
     required_settings = []
     default_settings = {

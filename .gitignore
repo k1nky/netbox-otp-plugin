@@ -2,3 +2,5 @@
 *.swp
 .vscode
 *.egg-info
+/build
+/dist

@@ -9,7 +9,7 @@ class TOTPDeviceTable(NetBoxTable):
         linkify=True,
     )
     actions = columns.ActionsColumn(
-        actions=('delete',)
+        actions=('edit', 'delete',)
     )
 
     class Meta(NetBoxTable.Meta):

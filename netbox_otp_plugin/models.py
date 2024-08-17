@@ -1,6 +1,5 @@
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django_otp.models import DeviceManager
-# from netbox.models.features import ChangeLoggingMixin
 from utilities.querysets import RestrictedQuerySet
 from django.urls import reverse
 
@@ -10,6 +9,7 @@ class DeviceQuerySet(RestrictedQuerySet, DeviceManager):
 
 
 class Device(TOTPDevice):
+
     class Meta:
         proxy = True
     objects = DeviceQuerySet.as_manager()

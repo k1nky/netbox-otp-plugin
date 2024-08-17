@@ -130,7 +130,4 @@ class DeviceDeleteView(generic.ObjectDeleteView):
 
 class DeviceListView(generic.ObjectListView):
     queryset = models.Device.objects
-    # filterset = filtersets.VirtualMachineFilterSet
-    # filterset_form = forms.VirtualMachineFilterForm
     table = tables.TOTPDeviceTable
-    # template_name = 'virtualization/virtualmachine_list.html'

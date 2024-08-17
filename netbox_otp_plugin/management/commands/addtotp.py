@@ -8,6 +8,7 @@ try:
 except ModuleNotFoundError:
     raise CommandError('django_otp or qrcode module does not exist')
 
+
 class Command(BaseCommand):
 
     help = 'Add a TOTP device for specified user'

@@ -15,20 +15,22 @@ Two-factor authentication for [NetBox](https://github.com/netbox-community/netbo
 ## Installation
 
 The plugin is available as a [Python package](https://pypi.org/project/netbox-otp-plugin/) in pypi and can be installed with pip
-
 ```
 source /opt/netbox/venv/bin/activate
 python -m pip install netbox-otp-plugin
 # or
 # python -m pip install netbox-otp-plugin==<version>
 ```
+
 Enable the plugin in /opt/netbox/netbox/netbox/configuration.py:
 ```
 PLUGINS = ['netbox_otp_plugin']
 ```
+
 Run migration:
 ```
-./manage.py migrate
+./manage.py makemigrations netbox_otp_plugin
+./manage.py migrate netbox_otp_plugin
 ```
 
 To ensure the plugin is automatically re-installed during future upgrades, create a file named `local_requirements.txt` (if not already existing) in the NetBox root directory (alongside `requirements.txt`) and append the `netbox-otp-plugin` package:

@@ -1,10 +1,16 @@
 from django import forms
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
+from django.utils.translation import gettext_lazy as _
 from django_otp.forms import OTPAuthenticationFormMixin
 from django_otp import user_has_device
 
 from netbox.forms import NetBoxModelForm
+from users.models import User
+from utilities.forms.fields import (
+    DynamicModelChoiceField,
+)
+
 from .models import Device
 
 
@@ -17,7 +23,7 @@ class OTPAuthenticationForm(OTPAuthenticationFormMixin, AuthenticationForm):
         self.cleaned_data = super().clean()
         user = self.get_user()
         # use get_plugin_config from netbox.plugins better
-        plugin_config = settings.PLUGINS_CONFIG['netbox_otp_plugin'] 
+        plugin_config = settings.PLUGINS_CONFIG['netbox_otp_plugin']
         otp_required = plugin_config.get('otp_required')
         if user_has_device(user) or otp_required:
             self.clean_otp(self.get_user())
@@ -28,8 +34,18 @@ class OTPAuthenticationForm(OTPAuthenticationFormMixin, AuthenticationForm):
 class OTPLoginForm(OTPAuthenticationForm):
     pass
 
+
 class DeviceForm(NetBoxModelForm):
+    user = DynamicModelChoiceField(
+        label=_('User'),
+        queryset=User.objects.all(),
+        required=True
+    )
 
     class Meta:
         model = Device
-        fields = ('name',)
+        fields = (
+            'name',
+            'digits',
+            'user',
+        )

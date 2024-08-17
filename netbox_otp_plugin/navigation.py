@@ -1,14 +1,14 @@
-from netbox.plugins import PluginMenu
+from netbox.plugins import (
+    PluginMenu, PluginMenuButton, PluginMenuItem
+)
 from netbox.choices import ButtonColorChoices
-from netbox.plugins import PluginMenuButton, PluginMenuItem
 
 devices_menu_item = PluginMenuItem(
     link='plugins:netbox_otp_plugin:device_list',
     link_text='Devices',
     buttons=(
         PluginMenuButton(
-            # link='plugins:netbox_otp_plugin:devices_add',
-            link='plugins:netbox_otp_plugin:device_list',
+            link='plugins:netbox_otp_plugin:device_add',
             title='Add',
             icon_class='mdi mdi-plus-thick',
             color=ButtonColorChoices.DEFAULT,

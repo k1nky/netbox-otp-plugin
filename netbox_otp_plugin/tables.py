@@ -26,6 +26,7 @@ class TOTPDeviceTable(NetBoxTable):
         )
         default_columns = (
             'pk',
+            'id',
             'name',
             'user',
             'actions',

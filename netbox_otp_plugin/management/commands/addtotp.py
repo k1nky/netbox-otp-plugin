@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand, CommandError
 from users.models import User
 
 try:
-    from django_otp.plugins.otp_totp.models import TOTPDevice
+    from netbox_otp_plugin.models import Device as TOTPDevice
     import qrcode
 except ModuleNotFoundError:
     raise CommandError('django_otp or qrcode module does not exist')
@@ -23,7 +23,7 @@ class Command(BaseCommand):
         except User.DoesNotExist:
             raise CommandError(f"User {username} does not exist")
         device = TOTPDevice.objects.create(user=user, name=f'{username}-otp')
-        device.save()
         qr = qrcode.QRCode()
         qr.add_data(device.config_url)
         qr.print_ascii()
+        self.stdout.write(self.style.SUCCESS(f'Created: {str(device)} with key {device.base32_key}'))

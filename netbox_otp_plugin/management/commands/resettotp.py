@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand, CommandError
 from users.models import User
 
 try:
-    from django_otp.plugins.otp_totp.models import TOTPDevice
+    from netbox_otp_plugin.models import Device as TOTPDevice
     from django_otp import user_has_device
 except ModuleNotFoundError:
     raise CommandError('django_otp module does not exist')

@@ -8,6 +8,11 @@ class TOTPDeviceTable(NetBoxTable):
         verbose_name='User',
         linkify=True,
     )
+    name = tables.Column(
+        verbose_name='Name',
+        linkify=True
+    )
+
     actions = columns.ActionsColumn(
         actions=('edit', 'delete',)
     )
@@ -26,7 +31,6 @@ class TOTPDeviceTable(NetBoxTable):
         )
         default_columns = (
             'pk',
-            'id',
             'name',
             'user',
             'actions',

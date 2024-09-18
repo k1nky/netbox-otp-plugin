@@ -18,7 +18,7 @@ class OTPPluginConfig(PluginConfig):
     version = '1.2.0'
     author = 'Andrey Shalashov'
     author_email = 'avshalashov@yandex.ru'
-    min_version = '4.1.0'
+    min_version = '4.0.0'
     max_version = '4.1.99'
     django_apps = [
         'django_otp',

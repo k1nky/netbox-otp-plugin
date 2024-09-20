@@ -21,7 +21,13 @@
         <tr>
           <th scope="row">{% trans "User" %}</th>
           <td>
-            {{ object.user }}
+            {{ object.user|linkify|placeholder }}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Key" %}</th>
+          <td>
+            <span id="otp_key">{{ object.base32_key }}</span>{% copy_content "otp_key" %}
           </td>
         </tr>
       </table>
@@ -33,7 +39,9 @@
         <h5 class="card-header">
           {% trans "QR Code" %}
         </h5>
-        {% qr_from_text object.config_url size="T" %}
+        <div class="card-body">
+          {% qr_from_text object.config_url size="T" %}
+        </div>
       </div>
     </div>
   </div>

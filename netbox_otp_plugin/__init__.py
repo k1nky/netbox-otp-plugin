@@ -10,9 +10,6 @@ if importlib.util.find_spec('django_otp') is None:
         "installed by running 'pip install django_otp qrcode'."
     )
 
-# the plugin login URL must be exempt from authentication
-netbox_settings.AUTH_EXEMPT_PATHS = netbox_settings.AUTH_EXEMPT_PATHS + (f'/{netbox_settings.BASE_PATH}plugins/otp',)
-
 
 class OTPPluginConfig(PluginConfig):
     name = 'netbox_otp_plugin'
@@ -22,7 +19,7 @@ class OTPPluginConfig(PluginConfig):
     author = 'Andrey Shalashov'
     author_email = 'avshalashov@yandex.ru'
     min_version = '4.0.0'
-    max_version = '4.0.99'
+    max_version = '4.1.99'
     django_apps = [
         'django_otp',
         'django_otp.plugins.otp_totp',
@@ -45,6 +42,13 @@ class OTPPluginConfig(PluginConfig):
         # django_otp provides OTP_TOTP_ISSUER. Set it here to avoid
         # making any changes in the original settings.py
         setattr(netbox_settings, 'OTP_TOTP_ISSUER', user_config.get('issuer'))
+
+        parsed_netbox_version = tuple(map(int, netbox_version.split('.')))
+        # the AUTH_EXEMPT_PATHS setting has been removed since NetBox v4.1.0
+        if parsed_netbox_version < (4, 1, 0):
+            # the plugin login URL must be exempt from authentication
+            auth_exempt_paths = netbox_settings.AUTH_EXEMPT_PATHS + (f'/{netbox_settings.BASE_PATH}plugins/otp',)
+            setattr(netbox_settings, 'AUTH_EXEMPT_PATHS', auth_exempt_paths)
 
 
 config = OTPPluginConfig

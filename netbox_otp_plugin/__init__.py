@@ -15,7 +15,7 @@ class OTPPluginConfig(PluginConfig):
     name = 'netbox_otp_plugin'
     verbose_name = 'OTP Login'
     description = 'OTP Login plugin'
-    version = '1.2.0'
+    version = '1.3.1'
     author = 'Andrey Shalashov'
     author_email = 'avshalashov@yandex.ru'
     min_version = '4.0.0'

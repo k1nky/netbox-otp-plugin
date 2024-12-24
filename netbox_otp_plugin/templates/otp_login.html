@@ -3,6 +3,7 @@
 {% load form_helpers %}
 {% load static %}
 {% load i18n %}
+{% load otp_login_helpers %}
 
 {% block layout %}
 
@@ -11,8 +12,13 @@
 
       {# NetBox logo #}
       <div class="text-center mb-4">
+        {% if settings.VERSION|is_version_greater:'4.1.0' %}
         <img src="{% static 'logo_netbox_dark_teal.svg' %}" height="80" alt="{% trans "NetBox Logo" %}" class="logo hide-theme-dark">
         <img src="{% static 'logo_netbox_bright_teal.svg' %}" height="80" alt="{% trans "NetBox Logo" %}" class="logo hide-theme-light">
+        {% else %}
+        {# for compatibility with NetBox 4.0 #}
+        <img src="{% static 'netbox_logo.svg' %}" height="80" alt="{% trans "NetBox logo" %}"/>
+        {% endif %}
       </div>
 
       {# Login banner #}

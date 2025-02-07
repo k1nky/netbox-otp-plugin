@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='netbox_otp_plugin',
-    version='1.3.2',
+    version='1.4.0rc1',
     description='OTP Login NetBox plugin',
     url='https://github.com/k1nky/netbox-otp-plugin',
     author='Andrey Shalashov',

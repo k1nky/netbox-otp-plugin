@@ -131,3 +131,39 @@ class DeviceDeleteView(generic.ObjectDeleteView):
 class DeviceListView(generic.ObjectListView):
     queryset = models.Device.objects
     table = tables.TOTPDeviceTable
+
+
+class MyDeviceListView(generic.ObjectListView):
+    def get_required_permission(self):
+        return 'netbox_otp_plugin.view_mydevice'
+
+    queryset = models.MyDevice.objects
+    table = tables.MyTOTPDeviceTable
+
+
+class MyDeviceView(generic.ObjectView):
+    def get_required_permission(self):
+        return 'netbox_otp_plugin.view_mydevice'
+
+    queryset = models.MyDevice.objects
+    template_name = 'otp_device.html'
+
+
+class MyDeviceEditView(generic.ObjectEditView):
+    def get_required_permission(self):
+        return 'netbox_otp_plugin.change_mydevice'
+
+    queryset = models.MyDevice.objects
+    form = forms.MyDeviceForm
+
+    def alter_object(self, obj, request, url_args, url_kwargs):
+        a = super().alter_object(obj, request, url_args, url_kwargs)
+        a.user = request.user
+        return a
+
+
+class MyDeviceDeleteView(generic.ObjectDeleteView):
+    def get_required_permission(self):
+        return 'netbox_otp_plugin.delete_mydevice'
+
+    queryset = models.MyDevice.objects

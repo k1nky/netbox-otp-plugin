@@ -157,9 +157,9 @@ class MyDeviceEditView(generic.ObjectEditView):
     form = forms.MyDeviceForm
 
     def alter_object(self, obj, request, url_args, url_kwargs):
-        a = super().alter_object(obj, request, url_args, url_kwargs)
-        a.user = request.user
-        return a
+        # explicitly associate the device with the current user
+        obj.user = request.user
+        return obj
 
 
 class MyDeviceDeleteView(generic.ObjectDeleteView):

@@ -36,6 +36,9 @@ class Device(TOTPDevice):
 
 
 class MyDevice(Device):
+    """
+    Proxy model for users to manage their own devices.
+    """
 
     class Meta:
         proxy = True

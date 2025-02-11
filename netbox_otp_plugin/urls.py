@@ -9,10 +9,6 @@ urlpatterns = [
     path('devices/<int:pk>/', views.DeviceView.as_view(), name='device'),
     path('devices/edit/<int:pk>/', views.DeviceEditView.as_view(), name='device_edit'),
     path('devices/delete/<int:pk>/', views.DeviceDeleteView.as_view(), name='device_delete'),
-    path('my-devices/', views.MyDeviceListView.as_view(), name='mydevice_list'),
     path('my-devices/add/', views.MyDeviceEditView.as_view(), name='mydevice_add'),
-    path('my-devices/<int:pk>/', views.MyDeviceView.as_view(), name='mydevice'),
-    path('my-devices/edit/<int:pk>/', views.MyDeviceEditView.as_view(), name='mydevice_edit'),
-    path('my-devices/delete/<int:pk>/', views.MyDeviceDeleteView.as_view(), name='mydevice_delete'),
     path('', views.OTPLoginView.as_view(), name='login')
 ]

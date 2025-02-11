@@ -1,6 +1,6 @@
 import django_tables2 as tables
 from netbox.tables import NetBoxTable, columns
-from netbox_otp_plugin.models import Device, MyDevice
+from netbox_otp_plugin.models import Device
 
 
 class TOTPDeviceTable(NetBoxTable):
@@ -14,7 +14,7 @@ class TOTPDeviceTable(NetBoxTable):
     )
 
     actions = columns.ActionsColumn(
-        actions=('edit', 'delete',)
+        actions=('edit', 'delete',),
     )
 
     class Meta(NetBoxTable.Meta):
@@ -33,36 +33,6 @@ class TOTPDeviceTable(NetBoxTable):
             'pk',
             'name',
             'user',
-            'actions',
-            'last_used_at',
-            'default_action'
-        )
-
-
-class MyTOTPDeviceTable(NetBoxTable):
-    name = tables.Column(
-        verbose_name='Name',
-        linkify=True
-    )
-
-    actions = columns.ActionsColumn(
-        actions=('edit', 'delete',)
-    )
-
-    class Meta(NetBoxTable.Meta):
-        model = MyDevice
-        fields = (
-            'pk',
-            'id',
-            'name',
-            'digits',
-            'created_at',
-            'last_used_at',
-            'actions'
-        )
-        default_columns = (
-            'pk',
-            'name',
             'actions',
             'last_used_at',
             'default_action'

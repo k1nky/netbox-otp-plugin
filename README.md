@@ -31,7 +31,6 @@ PLUGINS = ['netbox_otp_plugin']
 
 Run migration:
 ```
-./manage.py makemigrations netbox_otp_plugin
 ./manage.py migrate netbox_otp_plugin
 ```
 
@@ -69,7 +68,16 @@ PLUGINS_CONFIG = {
 }
 ```
 
-### Screenshots
+## OTP Self-registration
+
+To allow users to register their devices themselves, you need to grant them the following permissions:
+
+| Objects                   | Actions   | Constraints       |
+|---------------------------|-----------|-------------------|
+| Otp_Totp > TOTP Device    | view, add | {"user": "$user"} |
+| Users > User              | view      | {"pk": "$user"}   |
+
+## Screenshots
 
 ![alt text](assets/device_list.png "Device list")
 

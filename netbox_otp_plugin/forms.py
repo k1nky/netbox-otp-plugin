@@ -59,13 +59,3 @@ class DeviceForm(NetBoxModelForm):
             'digits',
             'user',
         )
-
-
-class MyDeviceForm(NetBoxModelForm):
-
-    class Meta:
-        model = Device
-        fields = (
-            'name',
-            'digits',
-        )

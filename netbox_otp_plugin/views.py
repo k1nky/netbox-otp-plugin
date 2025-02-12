@@ -132,14 +132,3 @@ class DeviceListView(generic.ObjectListView):
     queryset = models.Device.objects
     table = tables.TOTPDeviceTable
     template_name = 'otp_device_list.html'
-
-
-class MyDeviceEditView(generic.ObjectEditView):
-
-    queryset = models.Device.objects
-    form = forms.MyDeviceForm
-
-    def alter_object(self, obj, request, url_args, url_kwargs):
-        # explicitly associate the device with the current user
-        obj.user = request.user
-        return obj

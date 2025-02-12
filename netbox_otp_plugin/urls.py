@@ -9,6 +9,5 @@ urlpatterns = [
     path('devices/<int:pk>/', views.DeviceView.as_view(), name='device'),
     path('devices/edit/<int:pk>/', views.DeviceEditView.as_view(), name='device_edit'),
     path('devices/delete/<int:pk>/', views.DeviceDeleteView.as_view(), name='device_delete'),
-    path('my-devices/add/', views.MyDeviceEditView.as_view(), name='mydevice_add'),
     path('', views.OTPLoginView.as_view(), name='login')
 ]

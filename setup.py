@@ -15,7 +15,7 @@ setup(
         'django-otp',
         'django-qr-code',
     ],
-    packages=find_packages(),
+    packages=find_packages(exclude=["*tests.*", "*tests"]),
     package_data={
         "netbox_otp_plugin": [
             "templates/*",

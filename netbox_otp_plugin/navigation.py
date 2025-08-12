@@ -1,6 +1,5 @@
 from netbox.plugins import (
     PluginMenu, PluginMenuButton, PluginMenuItem, get_plugin_config
-
 )
 from netbox.choices import ButtonColorChoices
 

@@ -1,5 +1,5 @@
 from netbox.plugins import (
-    PluginMenu, PluginMenuButton, PluginMenuItem
+    PluginMenu, PluginMenuButton, PluginMenuItem, get_plugin_config
 )
 from netbox.choices import ButtonColorChoices
 
@@ -16,10 +16,15 @@ devices_menu_item = PluginMenuItem(
     )
 )
 
-menu = PluginMenu(
-    label='TOTP Plugin',
-    groups=(
-        ('Devices', (devices_menu_item,)),
-    ),
-    icon_class='mdi mdi-router'
-)
+if get_plugin_config('netbox_otp_plugin', 'top_level_menu'):
+    menu = PluginMenu(
+        label='TOTP Plugin',
+        groups=(
+            ('Devices', (devices_menu_item,)),
+        ),
+        icon_class='mdi mdi-router'
+    )
+else:
+    menu_items = (
+        devices_menu_item,
+    )

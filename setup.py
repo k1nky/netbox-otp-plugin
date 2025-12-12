@@ -12,7 +12,7 @@ setup(
     keywords='netbox otp login plugin',
     install_requires=[
         'qrcode',
-        'django-otp',
+        'django-otp==1.6.3',
         'django-qr-code',
     ],
     packages=find_packages(exclude=["*tests.*", "*tests"]),

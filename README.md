@@ -58,6 +58,7 @@ To reset user OTP device use the site or the command:
 The plugin has additional options:
 * `otp_required` - if set to True then two-factor authentication will be always required even if a user doesn't have an OTP device yet. False value required to authenticate users only with an OTP device attached only. Default: `True`.
 * `issuer` - the issuer parameter for the otpauth URL (see more https://github.com/google/google-authenticator/wiki/Key-Uri-Format). Default: `'Netbox'`.
+* `top_level_menu` - if set to True then the plugin menu will be placed at the top level of the menu.
 
 ### Example
 

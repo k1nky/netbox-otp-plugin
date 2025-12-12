@@ -15,11 +15,11 @@ class OTPPluginConfig(PluginConfig):
     name = 'netbox_otp_plugin'
     verbose_name = 'OTP Login'
     description = 'OTP Login plugin'
-    version = '1.3.3'
+    version = '1.3.4'
     author = 'Andrey Shalashov'
     author_email = 'avshalashov@yandex.ru'
     min_version = '4.0.0'
-    max_version = '4.3.99'
+    max_version = '4.4.99'
     django_apps = [
         'django_otp',
         'django_otp.plugins.otp_totp',

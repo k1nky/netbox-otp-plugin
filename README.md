@@ -8,7 +8,8 @@ Two-factor authentication for [NetBox](https://github.com/netbox-community/netbo
 
 | NetBox Version| Plugin Version|
 |---------------|---------------|
-| >= 4.1        | >= 1.3.6      |
+| >= 4.7        | >= 1.3.7      |
+| 4.1-4.6       | >= 1.3.6      |
 | 4.0           | >= 1.1.0      |
 | 3.X           | 1.0.7         |
 

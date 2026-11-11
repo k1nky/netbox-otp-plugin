@@ -2,8 +2,8 @@ import logging
 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login as auth_login
-from django.utils.http import url_has_allowed_host_and_scheme, urlencode
-from django.urls import reverse
+from django.utils.http import url_has_allowed_host_and_scheme
+from django.urls import NoReverseMatch, reverse
 from django.conf import settings
 from social_core.backends.utils import load_backends
 from django.shortcuts import render
@@ -31,17 +31,33 @@ class OTPLoginView(LoginView):
         return {
             'display_name': display_name,
             'icon_name': icon_name,
-            'url': f'{url}?{urlencode(params)}',
+            'url': url,
+            # SSO logins must be initiated via POST (social-auth-app-django >= 6.0)
+            'params': dict(params),
         }
+
+    @staticmethod
+    def get_begin_url(name):
+        # NetBox >= 4.7.1 wraps python-social-auth's begin view in its own SocialAuthBeginView,
+        # which lets netbox.js initiate the login from a script so that a restrictive CSP
+        # `form-action` directive does not block the redirect to the identity provider.
+        try:
+            return reverse('social_auth_begin', args=[name])
+        except NoReverseMatch:
+            return reverse('social:begin', args=[name])
 
     def get_auth_backends(self, request):
         auth_backends = []
         saml_idps = get_saml_idps()
 
+        # The login page is re-rendered by post() when authentication fails, in which case the
+        # post-login URL is found in the POST data.
+        request_data = request.POST if request.method == 'POST' else request.GET
+
         for name in load_backends(settings.AUTHENTICATION_BACKENDS).keys():
-            url = reverse('social:begin', args=[name])
+            url = self.get_begin_url(name)
             params = {}
-            if next := request.GET.get('next'):
+            if next := request_data.get('next'):
                 params['next'] = next
             if name.lower() == 'saml' and saml_idps:
                 for idp in saml_idps:
